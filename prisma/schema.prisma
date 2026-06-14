@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +5,127 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+enum Role {
+  USER
+  VIP
+  SALES
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum AvailableDays {
+  WEEKDAY
+  WEEKDAY_NO_HOLIDAY
+  ANY
+}
+
+enum LeaveDay {
+  SAME
+  NEXT
+}
+
+model User {
+  id           String        @id @default(cuid())
+  name         String
+  phone        String?       @unique
+  email        String?       @unique
+  passwordHash String?
+  role         Role          @default(USER)
+  totalSpent   Float         @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  bookings     Booking[]
+  accounts     OAuthAccount[]
+}
+
+model OAuthAccount {
+  id                String @id @default(cuid())
+  userId            String
+  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider          String
+  providerAccountId String
+
+  @@unique([provider, providerAccountId])
+}
+
+model Plan {
+  id             String        @id @default(cuid())
+  name           String
+  playHours      Int
+  availableDays  AvailableDays
+  timeStart      String
+  timeEnd        String
+  earliestEntry  String
+  latestLeave    String
+  latestLeaveDay LeaveDay       @default(SAME)
+  price          Float
+  deposit        Float
+  overtimeRate   Float          @default(0)
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  bookings       Booking[]
+}
+
+model Booking {
+  id        String        @id @default(cuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planId    String
+  plan      Plan          @relation(fields: [planId], references: [id])
+  date      DateTime
+  startTime String
+  endTime   String
+  persons   Int
+  status    BookingStatus @default(PENDING)
+  amount    Float
+  deposit   Float
+  total     Float
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  payment   Payment?
+}
+
+model Payment {
+  id           String         @id @default(cuid())
+  bookingId    String         @unique
+  booking      Booking        @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  methodId     String?
+  method       PaymentMethod? @relation(fields: [methodId], references: [id])
+  receiptImage String?
+  status       PaymentStatus  @default(PENDING)
+  uploadedAt   DateTime?
+}
+
+model PaymentMethod {
+  id       String    @id @default(cuid())
+  name     String
+  qrImage  String
+  isActive Boolean   @default(true)
+  payments Payment[]
+}
+
+model Holiday {
+  id   String  @id @default(cuid())
+  date DateTime @unique
+  name String
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
 }
