@@ -37,7 +37,17 @@ npm run lint
 # Build
 npm run build
 npm start
+
+# Git sync
+npm run pull      # git pull
+npm run push      # git add -A; git commit; git push
 ```
+
+## Git Workflow
+
+- **Clone on new machine:** `git clone https://github.com/devilgod-ai/booking-pixel.git`
+- **Pull latest:** `git pull` (or `npm run pull`)
+- **Commit & push:** `npm run push` — prompts for commit message, then stages all, commits, pushes
 
 ## Project Structure
 
