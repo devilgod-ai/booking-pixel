@@ -1,15 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { FileUpload } from "@/components/ui/file-upload";
-import { useEffect } from "react";
+
+interface PaymentMethodData {
+  id: string;
+  name: string;
+  qrImage: string | null;
+  isActive: boolean;
+}
+
+interface BookingData {
+  id: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  persons: number;
+  amount: number;
+  deposit: number;
+  total: number;
+  user: { name: string; phone: string };
+  plan: { name: string };
+}
+
+interface PageData {
+  booking: BookingData;
+  paymentMethods: PaymentMethodData[];
+}
 
 export default function PaymentPage() {
   const searchParams = useSearchParams();
   const bookingId = searchParams.get("bookingId");
   const router = useRouter();
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<PageData | null>(null);
   const [methodId, setMethodId] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -27,7 +52,7 @@ export default function PaymentPage() {
 
   if (!data) return <div className="max-w-2xl mx-auto p-6">Loading...</div>;
 
-  const selectedMethod = data.paymentMethods?.find((m: any) => m.id === methodId);
+  const selectedMethod = data.paymentMethods?.find((m) => m.id === methodId);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -52,7 +77,7 @@ export default function PaymentPage() {
         <form onSubmit={handleSubmit} className="border-t pt-4 space-y-4">
           <h2 className="font-semibold">Payment Method</h2>
           <div className="space-y-2">
-            {data.paymentMethods?.map((m: any) => (
+            {data.paymentMethods?.map((m) => (
               <label key={m.id} className={`flex items-center gap-3 p-3 border rounded cursor-pointer ${methodId === m.id ? "border-blue-500 bg-blue-50" : ""}`}>
                 <input type="radio" name="method" value={m.id} checked={methodId === m.id} onChange={() => setMethodId(m.id)} />
                 <span>{m.name}</span>
@@ -60,7 +85,7 @@ export default function PaymentPage() {
             ))}
           </div>
           {selectedMethod?.qrImage && (
-            <div><p className="text-sm text-gray-500 mb-1">Scan QR Code</p><img src={selectedMethod.qrImage} alt={selectedMethod.name} className="w-40 h-40 object-contain border rounded" /></div>
+            <div><p className="text-sm text-gray-500 mb-1">Scan QR Code</p><Image src={selectedMethod.qrImage} alt={selectedMethod.name} width={160} height={160} className="object-contain border rounded" /></div>
           )}
           <div><label className="block text-sm mb-1">Upload Receipt</label><FileUpload onUpload={setFile} /></div>
           <button type="submit" disabled={!file || uploading} className="w-full bg-blue-600 text-white py-2 rounded disabled:opacity-50">{uploading ? "Uploading..." : "Submit Payment"}</button>

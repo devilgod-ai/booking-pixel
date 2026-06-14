@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface FileUploadProps {
   onUpload: (file: File) => void;
@@ -23,7 +24,7 @@ export function FileUpload({ onUpload, accept = "image/png,image/jpeg" }: FileUp
   return (
     <div>
       <input type="file" accept={accept} onChange={handleChange} className="border rounded p-2 w-full" />
-      {preview && <img src={preview} alt="Preview" className="mt-2 max-h-40 rounded" />}
+      {preview && <Image src={preview} alt="Preview" width={200} height={200} className="mt-2 max-h-40 rounded" unoptimized />}
     </div>
   );
 }

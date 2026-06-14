@@ -1,4 +1,5 @@
 import { PrismaClient } from "../src/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { Role, AvailableDays, LeaveDay } from "../src/generated/prisma/enums";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
@@ -6,7 +7,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const prisma = new PrismaClient({
-  datasourceUrl: process.env.DATABASE_URL,
+  adapter: new PrismaPg({
+    connectionString: process.env.DATABASE_URL!,
+  }),
 });
 
 async function main() {

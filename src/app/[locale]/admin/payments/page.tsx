@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 
 export default async function AdminPaymentsPage() {
   const session = await auth();
@@ -21,7 +22,7 @@ export default async function AdminPaymentsPage() {
         <div key={m.id} className="bg-white p-3 rounded shadow mb-2 flex items-center justify-between">
           <div>
             <span className="font-medium">{m.name}</span>
-            {m.qrImage && <img src={m.qrImage} alt={m.name} className="w-12 h-12 object-contain ml-2 inline" />}
+            {m.qrImage && <Image src={m.qrImage} alt={m.name} width={48} height={48} className="object-contain ml-2 inline" />}
           </div>
           <form action={`/api/admin/payments/${m.id}`} method="POST">
             <input type="hidden" name="_method" value="DELETE" />
