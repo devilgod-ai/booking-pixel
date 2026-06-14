@@ -1,0 +1,155 @@
+<h2>AI Model 分配 & Task 拆分</h2>
+<p class="subtitle">以 Next.js + Prisma + PostgreSQL 為基礎, 按任務複雜度和模型特性分配</p>
+
+<div class="section">
+  <h3>Phase 1: Foundation (需先完成)</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h3 style="color:#60a5fa">Prisma Schema + Seed</h3>
+        <p><strong>Model: DeepSeek V4 Pro</strong></p>
+        <p class="subtitle">Data model 較複雜, 多表關聯, 需要強推理能力確保 schema 正確</p>
+        <div class="label">Foundation | 不可並行</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Phase 2: Feature Tracks (可並行)</h3>
+  <div class="options" data-multiselect>
+    <div class="option">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3 style="color:#60a5fa">Auth + Register/Login</h3>
+        <p><strong>Model: Qwen 3.7 Max</strong></p>
+        <p>NextAuth.js v5 整合, Google OAuth, Email/Phone login, JWT session. 框架知識需求高</p>
+        <div class="label">依賴: Schema</div>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3 style="color:#22c55e">Home Page</h3>
+        <p><strong>Model: Qwen 3.7 Plus</strong></p>
+        <p>Landing page UI, Logo, Slideshow, 4 plans display, Footer, Map. 純展示, 無複雜邏輯</p>
+        <div class="label">獨立</div>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3 style="color:#f59e0b">Booking Calendar</h3>
+        <p><strong>Model: DeepSeek V4 Pro</strong></p>
+        <p>最複雜: 週視圖, 時段分欄, 顏色編碼, 剩餘座位計算, 假期判斷, 手機響應式. 需要強邏輯推理</p>
+        <div class="label">依賴: Schema + Auth</div>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">4</div>
+      <div class="content">
+        <h3 style="color:#a855f7">Admin Panel</h3>
+        <p><strong>Model: Kimi K2.6</strong></p>
+        <p>消費計劃 CRUD, 支付設定 (QR upload), 會員列表, 系統設定. 較多 CRUD 表單操作</p>
+        <div class="label">依賴: Schema + Auth</div>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">5</div>
+      <div class="content">
+        <h3 style="color:#ec4899">Account + History</h3>
+        <p><strong>Model: Qwen 3.7 Plus</strong></p>
+        <p>會員資料顯示, 歷史預約列表, 上傳單據按鈕. 中等複雜度</p>
+        <div class="label">依賴: Schema + Auth</div>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">6</div>
+      <div class="content">
+        <h3 style="color:#14b8a6">Payment Flow</h3>
+        <p><strong>Model: MiniMax M3</strong></p>
+        <p>付款版面, QR code 顯示, 金額計算, 上傳單據 (png/jpg). 表單驗證 + 檔案處理</p>
+        <div class="label">依賴: Booking</div>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">7</div>
+      <div class="content">
+        <h3 style="color:#f43f5e">i18n 繁簡英</h3>
+        <p><strong>Model: Mimo V2.5 Pro</strong></p>
+        <p>所有頁面三語翻譯檔, next-intl 整合</p>
+        <div class="label">獨立 (最後套用)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Phase 3: Verification</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h3 style="color:#22d3ee">Global Verification</h3>
+        <p><strong>Model: DeepSeek V4 Flash</strong></p>
+        <p>速度優先的驗證模型. 檢查所有 feature 的 API 兼容性, TypeScript 型別, 全域一致性, E2E flow 完整性</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Task Dependency Flow</h3>
+  <div class="mockup">
+    <div class="mockup-body" style="padding:1rem;font-size:13px;line-height:2">
+      <div style="text-align:center">
+        <span style="border:1px solid #60a5fa;border-radius:6px;padding:4px 12px;margin:2px">Schema (DSv4Pro)</span>
+        <span style="margin:0 8px">→</span>
+        <span style="display:inline-block;text-align:left">
+          <span style="border:1px solid #60a5fa;border-radius:6px;padding:4px 8px;margin:2px;display:inline-block">Auth (Q3.7M)</span>
+          <span style="border:1px solid #22c55e;border-radius:6px;padding:4px 8px;margin:2px;display:inline-block">Home (Q3.7P)</span>
+          <span style="border:1px solid #f59e0b;border-radius:6px;padding:4px 8px;margin:2px;display:inline-block">Calendar (DSv4Pro)</span>
+          <span style="border:1px solid #a855f7;border-radius:6px;padding:4px 8px;margin:2px;display:inline-block">Admin (Kimi)</span>
+          <span style="border:1px solid #ec4899;border-radius:6px;padding:4px 8px;margin:2px;display:inline-block">Account (Q3.7P)</span>
+        </span>
+        <span style="margin:0 8px">→</span>
+        <span style="border:1px solid #14b8a6;border-radius:6px;padding:4px 12px;margin:2px">Payment (MiniMax)</span>
+        <br><br>
+        <span style="border:1px solid #f43f5e;border-radius:6px;padding:4px 12px;margin:2px">i18n (Mimo) ← 最後全頁套用</span>
+        <br><br>
+        <span style="border:2px dashed #22d3ee;border-radius:6px;padding:4px 12px;margin:2px">Verification (DSv4Flash)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Model 特性理由</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>DeepSeek V4 Pro (x2 tasks)</h4>
+      <ul>
+        <li>最強推理能力 → Schema 設計 + Calendar 複雜邏輯</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Qwen 3.7 Max</h4>
+      <ul>
+        <li>框架整合經驗最廣 → NextAuth.js 設定</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>DeepSeek V4 Flash</h4>
+      <ul>
+        <li>速度快、Cost 低 → 適合全域檢查/驗證</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Kimi K2.6 / MiniMax M3 / Mimo V2.5 Pro</h4>
+      <ul>
+        <li>一般 CRUD / UI 任務, 成本效益好</li>
+      </ul>
+    </div>
+  </div>
+</div>

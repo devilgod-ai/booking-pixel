@@ -1,0 +1,82 @@
+<h2>Booking System - 技術架構選擇</h2>
+<p class="subtitle">以下3個全棧方案, 請選擇你偏向的技術組合</p>
+
+<div class="section">
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="a" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>Next.js + Prisma + PostgreSQL</h3>
+        <p><strong>前端:</strong> React 18 + Next.js 14 (App Router)<br>
+        <strong>後端:</strong> Next.js API Routes / Server Actions<br>
+        <strong>DB:</strong> PostgreSQL + Prisma ORM<br>
+        <strong>Auth:</strong> NextAuth.js v5<br>
+        <strong>部署:</strong> Vercel / Railway</p>
+      </div>
+    </div>
+    <div class="option" data-choice="b" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>Nuxt 3 + Node.js + MySQL</h3>
+        <p><strong>前端:</strong> Vue 3 + Nuxt 3<br>
+        <strong>後端:</strong> Node.js + Express / NestJS<br>
+        <strong>DB:</strong> MySQL + Knex / TypeORM<br>
+        <strong>Auth:</strong> Lucia Auth + OAuth<br>
+        <strong>部署:</strong> VPS / Docker</p>
+      </div>
+    </div>
+    <div class="option" data-choice="c" onclick="toggleSelect(this)">
+      <div class="letter">C</div>
+      <div class="content">
+        <h3>SvelteKit + Python FastAPI + PostgreSQL</h3>
+        <p><strong>前端:</strong> Svelte 4 + SvelteKit<br>
+        <strong>後端:</strong> Python FastAPI<br>
+        <strong>DB:</strong> PostgreSQL + SQLAlchemy<br>
+        <strong>Auth:</strong> FastAPI Users + OAuth<br>
+        <strong>部署:</strong> VPS / Docker Compose</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons">
+  <div class="pros">
+    <h4>我的推薦: 方案 A (Next.js)</h4>
+    <ul>
+      <li>單一語言 (TypeScript) 前後端統一</li>
+      <li>Next.js 生態成熟, 文件齊全</li>
+      <li>Vercel 一鍵部署, 免費額度充裕</li>
+      <li>Server Actions 簡化表單處理</li>
+      <li>AI 模型對 Next.js/React 訓練最充分</li>
+    </ul>
+  </div>
+  <div class="cons">
+    <h4>權衡</h4>
+    <ul>
+      <li>需學習 Next.js 特定模式</li>
+      <li>日曆元件需要額外整合</li>
+      <li>Server Actions 仍在快速迭代</li>
+    </ul>
+  </div>
+</div>
+
+<div class="mockup">
+  <div class="mockup-header">系統架構概覽 (方案A)</div>
+  <div class="mockup-body" style="padding:1rem">
+    <div style="text-align:center;font-size:14px;line-height:2.2">
+      <div style="border:2px solid #555;border-radius:8px;padding:8px;margin:4px;display:inline-block;min-width:180px;background:#1e293b">
+        Browser / Mobile
+      </div>
+      <div style="margin:4px">|</div>
+      <div style="border:2px solid #3b82f6;border-radius:8px;padding:8px;margin:4px;display:inline-block;min-width:180px;background:#1e3a5f">
+        Next.js App Router<br><span style="font-size:11px;color:#94a3b8">SSR + API Routes</span>
+      </div>
+      <div style="margin:4px">|</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <div style="border:1px solid #22c55e;border-radius:6px;padding:6px 12px;background:#1a3a2a;font-size:13px">NextAuth.js<br><span style="font-size:10px;color:#86efac">Google/FB/IG OAuth</span></div>
+        <div style="border:1px solid #f59e0b;border-radius:6px;padding:6px 12px;background:#3a2a0a;font-size:13px">Prisma ORM<br><span style="font-size:10px;color:#fcd34d">PostgreSQL</span></div>
+        <div style="border:1px solid #a855f7;border-radius:6px;padding:6px 12px;background:#2a1a3a;font-size:13px">Stripe / PayMe<br><span style="font-size:10px;color:#d8b4fe">Payment</span></div>
+      </div>
+    </div>
+  </div>
+</div>

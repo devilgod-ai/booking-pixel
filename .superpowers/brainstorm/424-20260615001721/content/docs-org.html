@@ -1,0 +1,71 @@
+<h2>Docs 組織架構</h2>
+<p class="subtitle">PRD vs AGENTS.md vs 其他文件的分工</p>
+
+<div class="section">
+  <h3>docs/PRD.md</h3>
+  <p class="subtitle">產品需求文件 — 回答「做什麼」「為什麼」「給誰用」</p>
+  <div style="border:1px solid #334155;border-radius:6px;padding:12px;font-size:13px;color:#94a3b8;line-height:1.8">
+    <span style="color:#60a5fa">1. Executive Summary</span> — Booking system 一句話描述<br>
+    <span style="color:#60a5fa">2. Problem Statement</span> — 解決客人預約管理問題<br>
+    <span style="color:#60a5fa">3. Target Audience</span> — 客人, VIP, Sales, 管理員<br>
+    <span style="color:#60a5fa">4. Goals & Success Metrics</span> — 預約轉換率等<br>
+    <span style="color:#60a5fa">5. Core Features / User Stories</span> — 6大功能模組的 User Story<br>
+    <span style="color:#60a5fa">6. Non-Goals</span> — IG OAuth暫不做, 未有CRM整合<br>
+    <span style="color:#60a5fa">7. Acceptance Criteria</span> — 每個feature的完成標準<br>
+    <span style="color:#60a5fa">8. Open Questions</span> — VIP規則待定, Sales權限細則
+  </div>
+</div>
+
+<div class="section">
+  <h3>AGENTS.md</h3>
+  <p class="subtitle">AI agent操作手冊 — 回答「怎麼開發」「注意什麼」</p>
+  <div style="border:1px solid #334155;border-radius:6px;padding:12px;font-size:13px;color:#94a3b8;line-height:1.8">
+    <span style="color:#f59e0b">Tech Stack</span> — Next.js 14, Prisma, PostgreSQL, NextAuth v5<br>
+    <span style="color:#f59e0b">Commands</span> — npm run dev, npx prisma generate, etc.<br>
+    <span style="color:#f59e0b">Project Structure</span> — 目錄架構 (app/, components/, lib/, prisma/)<br>
+    <span style="color:#f59e0b">Conventions</span> — TypeScript strict, Server Actions pattern<br>
+    <span style="color:#f59e0b">Environment</span> — Windows PowerShell, 環境變數清單<br>
+    <span style="color:#f59e0b">Gotchas</span> — 香港假期API, Calendar timezone, 上傳檔案限制
+  </div>
+</div>
+
+<div class="section">
+  <h3>其他 Docs</h3>
+  <div class="options" data-multiselect>
+    <div class="option">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>docs/oauth-setup.md <span class="label" style="color:#22c55e">Done</span></h3>
+        <p>Google / Facebook / Instagram OAuth 申請步驟</p>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>docs/deployment.md</h3>
+        <p>VPS 部署步驟: PostgreSQL setup, PM2, Nginx reverse proxy, SSL cert</p>
+      </div>
+    </div>
+    <div class="option">
+      <div class="letter">C</div>
+      <div class="content">
+        <h3>docs/holiday-api.md</h3>
+        <p>香港政府公眾假期 API 整合說明 (data.gov.hk)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>總結: PRD vs AGENTS.md 分工原則是?</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="border:2px solid #60a5fa;border-radius:8px;padding:12px;text-align:center">
+      <h3 style="color:#60a5fa">PRD.md</h3>
+      <p style="font-size:13px;color:#94a3b8">What & Why<br>給人讀的<br>產品方向</p>
+    </div>
+    <div style="border:2px solid #f59e0b;border-radius:8px;padding:12px;text-align:center">
+      <h3 style="color:#f59e0b">AGENTS.md</h3>
+      <p style="font-size:13px;color:#94a3b8">How<br>給AI讀的<br>開發指南</p>
+    </div>
+  </div>
+</div>

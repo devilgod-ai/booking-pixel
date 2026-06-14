@@ -1,0 +1,73 @@
+<h2>Booking System - Data Model</h2>
+<p class="subtitle">核心資料表關聯圖</p>
+
+<div class="mockup">
+  <div class="mockup-header">Database Schema</div>
+  <div class="mockup-body" style="padding:1rem;font-family:monospace;font-size:12px;line-height:1.6;white-space:pre;overflow-x:auto">
+<b>User</b>
+  id, name, phone, email, password_hash, role(USER|VIP|SALES|ADMIN)
+  total_spent, created_at
+
+<b>Plan</b> (消費計劃)
+  id, name, play_hours, available_days(WEEKDAY|WEEKDAY_NO_HOLIDAY|ANY)
+  available_time_start, available_time_end
+  earliest_entry, latest_leave, latest_leave_day(SAME|NEXT)
+  price, deposit, overtime_rate_per_hour
+  is_active, created_at
+
+<b>Booking</b>
+  id, user_id, plan_id, date, start_time, end_time
+  persons, status(PENDING|CONFIRMED|CANCELLED)
+  amount, deposit, total
+  created_at
+
+<b>Payment</b>
+  id, booking_id, method_id, receipt_image
+  status(PENDING|VERIFIED|REJECTED)
+  uploaded_at
+
+<b>PaymentMethod</b> (支付設定)
+  id, name, qr_code_image, is_active
+
+<b>Holiday</b> (公眾假期, 來自HK Gov API)
+  id, date, name
+
+<b>Setting</b> (系統設定)
+  key, value  (e.g. max_seats=10)
+
+<b>OAuthAccount</b>
+  id, user_id, provider, provider_account_id
+</div>
+</div>
+
+<div class="section">
+  <h3>Routes / Pages</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px">
+    <div style="border:1px solid #334155;border-radius:6px;padding:8px">
+      <strong style="color:#60a5fa">前台 (Public)</strong>
+      <div style="margin-top:4px;color:#94a3b8">
+        / → Home (landing)<br>
+        /auth/login → 登入<br>
+        /auth/register → 註冊<br>
+        /booking → 預約日曆<br>
+        /booking/payment → 付款<br>
+        /account → 我的帳號
+      </div>
+    </div>
+    <div style="border:1px solid #334155;border-radius:6px;padding:8px">
+      <strong style="color:#f59e0b">後台 (Admin/Sales)</strong>
+      <div style="margin-top:4px;color:#94a3b8">
+        /admin → Booking 總覽<br>
+        /admin/plans → 消費計劃設定<br>
+        /admin/payments → 支付設定<br>
+        /admin/users → 會員管理<br>
+        /admin/settings → 系統設定
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>這份 data model 和 route 結構是否合理？</h3>
+  <p class="subtitle">請確認後我們繼續 AI 模型分配和任務拆分</p>
+</div>
