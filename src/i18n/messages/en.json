@@ -1,0 +1,9 @@
+{
+  "nav": { "home": "Home", "register": "Register", "login": "Login", "booking": "Booking", "account": "My Account" },
+  "home": { "title": "Welcome", "subtitle": "Book Now" },
+  "auth": { "register": "Register", "login": "Login", "name": "Name", "phone": "WhatsApp", "email": "Email", "password": "Password", "confirmPassword": "Confirm Password", "loginWithGoogle": "Login with Google" },
+  "booking": { "title": "Booking", "persons": "Persons", "plan": "Plan", "confirm": "Confirm Booking" },
+  "payment": { "title": "Payment", "amount": "Amount", "deposit": "Deposit", "total": "Total", "uploadReceipt": "Upload Receipt" },
+  "account": { "title": "My Account", "totalSpent": "Total Spent", "history": "Booking History" },
+  "admin": { "title": "Admin", "plans": "Plans", "payments": "Payments", "users": "Users", "settings": "Settings" }
+}

@@ -1,0 +1,9 @@
+{
+  "nav": { "home": "首頁", "register": "註冊", "login": "登入", "booking": "預約", "account": "我的帳號" },
+  "home": { "title": "歡迎", "subtitle": "立即預約" },
+  "auth": { "register": "註冊", "login": "登入", "name": "姓名", "phone": "WhatsApp號碼", "email": "電郵", "password": "密碼", "confirmPassword": "確認密碼", "loginWithGoogle": "以 Google 登入" },
+  "booking": { "title": "預約", "persons": "人數", "plan": "消費計劃", "confirm": "確認預約" },
+  "payment": { "title": "付款", "amount": "金額", "deposit": "按金", "total": "總額", "uploadReceipt": "上傳單據" },
+  "account": { "title": "我的帳號", "totalSpent": "消費總額", "history": "預約記錄" },
+  "admin": { "title": "管理", "plans": "消費計劃", "payments": "支付設定", "users": "會員資料", "settings": "系統設定" }
+}

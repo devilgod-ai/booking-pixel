@@ -1,0 +1,9 @@
+{
+  "nav": { "home": "首页", "register": "注册", "login": "登录", "booking": "预约", "account": "我的账号" },
+  "home": { "title": "欢迎", "subtitle": "立即预约" },
+  "auth": { "register": "注册", "login": "登录", "name": "姓名", "phone": "WhatsApp号码", "email": "邮箱", "password": "密码", "confirmPassword": "确认密码", "loginWithGoogle": "以 Google 登录" },
+  "booking": { "title": "预约", "persons": "人数", "plan": "消费计划", "confirm": "确认预约" },
+  "payment": { "title": "付款", "amount": "金额", "deposit": "押金", "total": "总额", "uploadReceipt": "上传收据" },
+  "account": { "title": "我的账号", "totalSpent": "消费总额", "history": "预约记录" },
+  "admin": { "title": "管理", "plans": "消费计划", "payments": "支付设置", "users": "会员资料", "settings": "系统设置" }
+}
