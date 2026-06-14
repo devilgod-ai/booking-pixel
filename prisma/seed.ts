@@ -1,8 +1,13 @@
 import { PrismaClient } from "../src/generated/prisma/client";
 import { Role, AvailableDays, LeaveDay } from "../src/generated/prisma/enums";
 import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
 
-const prisma = new PrismaClient();
+dotenv.config();
+
+const prisma = new PrismaClient({
+  datasourceUrl: process.env.DATABASE_URL,
+});
 
 async function main() {
   const passwordHash = await bcrypt.hash("admin123", 12);
